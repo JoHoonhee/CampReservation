@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="REV">
+	
+	<!-- 캠핑장 예약 관리 -->
+	<insert id="insertCampReservation" parameterType="rev">
+		INSERT INTO camp_reservation(idx, id, name, tel, camp_name, camp_div, start_date, end_date)
+		VALUES(camp_reserve_idx.NEXTVAL, #{id}, #{name}, #{tel}, #{camp_name}, #{camp_div}, #{start_date}, #{end_date})
+	</insert>
+	
+	<delete id="deleteCampReservation" parameterType="rev">
+		DELETE FROM camp_reservation WHERE idx = #{idx}
+	</delete>
+	
+	<update id="updateWriteReview" parameterType="rev">
+		UPDATE camp_reservation SET write_review = #{write_review}
+		WHERE idx = #{idx}
+	</update>
+	
+	<select id="getReserveCheck" parameterType="rev" resultType="rev">
+		SELECT * FROM camp_reservation WHERE idx = #{idx}
+	</select>
+	
+	<select id="getReserveCheckList" parameterType="rev" resultType="rev">
+		<![CDATA[
+		SELECT rownum, Q.*
+		FROM
+			(SELECT rownum AS rnum, K.*
+			FROM (SELECT * 
+				 FROM camp_reservation
+		]]>
+				 WHERE id = #{id}
+		<![CDATA[
+			 	 ORDER BY idx DESC) K
+			WHERE rownum <= ${end_idx}) Q
+		WHERE rnum >= ${start_idx}
+		]]>
+	</select>
+	
+	<select id="totalCount" parameterType="rev" resultType="int">
+		SELECT COUNT(*) FROM camp_reservation
+	</select>
+	
+	<!-- 리뷰 등록 관리 -->
+	<insert id="insertReview" parameterType="rev">
+		INSERT INTO camp_review(idx_review, id, name, camp_name, review)
+		VALUES(camp_review_idx.NEXTVAL, #{id}, #{name}, #{camp_name}, #{review})
+	</insert>
+	
+	<delete id="deleteReview" parameterType="rev">
+		DELETE FROM camp_review WHERE idx_review = #{idx_review}
+	</delete>
+	
+	<select id="getReviewList" parameterType="rev" resultType="rev">
+		SELECT * FROM camp_review WHERE camp_name = #{camp_name} ORDER BY idx_review DESC
+	</select>
+	
+	<select id="totalCountReview" parameterType="rev" resultType="int">
+		SELECT COUNT(*) FROM camp_review WHERE camp_name = #{camp_name}
+	</select>
+	
+</mapper>

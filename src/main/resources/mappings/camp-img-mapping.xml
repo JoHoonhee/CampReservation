@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="IMG">
+
+	<insert id="insertCampImg" parameterType="img">
+		INSERT INTO camp_img(idx_img, camp_name, upload_img)
+		VALUES(camp_img_idx.NEXTVAL, #{camp_name}, #{upload_imgStr})
+	</insert>
+	
+	<delete id="deleteCampImg" parameterType="img">
+		DELETE FROM camp_img WHERE idx_img = #{idx_img}
+	</delete>
+	
+	<select id="getCampImg" parameterType="img" resultType="img">
+		SELECT idx_img, camp_name, upload_img as upload_imgStr FROM camp_img WHERE idx_img = #{idx_img}
+	</select>
+	
+	<select id="getCampImgList" parameterType="img" resultType="img">
+		SELECT idx_img, camp_name, upload_img as upload_imgStr FROM camp_img WHERE camp_name = #{camp_name}
+	</select>
+
+</mapper>

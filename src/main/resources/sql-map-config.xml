@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- Alias 설정 -->
+	<typeAliases>
+		<typeAlias alias="camp" type="com.camping.biz.camp.CampVO"/>
+		<typeAlias alias="member" type="com.camping.biz.member.MemberVO"/>
+		<typeAlias alias="img" type="com.camping.biz.img.CampImgVO"/>
+		<typeAlias alias="rev" type="com.camping.biz.reservation.CampReserveVO"/>
+	</typeAliases>
+	
+	<!-- Sql Mapper 설정 -->
+	<mappers>
+		<mapper resource="mappings/camp-mapping.xml" />
+		<mapper resource="mappings/camp-member-mapping.xml" />
+		<mapper resource="mappings/camp-img-mapping.xml" />
+		<mapper resource="mappings/camp-reservation-mapping.xml" />
+	</mappers>
+</configuration>

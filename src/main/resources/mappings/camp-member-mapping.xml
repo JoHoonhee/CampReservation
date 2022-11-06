@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MEMBER">
+
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO camp_member(idx, id, password, bcrypt, name, tel, email)
+		VALUES(camp_member_idx.NEXTVAL, #{id}, #{password}, #{bcrypt}, #{name}, #{tel}, #{email})
+	</insert>
+	
+	<delete id="deleteMember" parameterType="member">
+		DELETE FROM camp_member WHERE idx = #{idx}
+	</delete>
+	
+	<update id="updateMemberAuthority" parameterType="member">
+		UPDATE camp_member SET role = #{role} WHERE idx = #{idx}
+	</update>
+	
+	<update id="updateMember" parameterType="member">
+		UPDATE camp_member SET password = #{password}, bcrypt = #{bcrypt}, tel = #{tel}, email = #{email}
+		WHERE idx = #{idx}
+	</update>
+	
+	<select id="getMember" parameterType="member" resultType="member">
+		SELECT * FROM camp_member WHERE id = #{id}
+	</select>
+	
+	<select id="getMemberList" parameterType="member" resultType="member">
+		<![CDATA[
+		SELECT rownum, Q.*
+		FROM
+			(SELECT rownum AS rnum, K.*
+			FROM (SELECT * 
+				 FROM camp_member
+			 	 WHERE 1 = 1
+		]]>
+				 <if test="searchCondition == 'id'">
+				 	AND id LIKE '%'||#{searchKeyword}||'%'
+				 </if>
+				 <if test="searchCondition == 'name'">
+				 	AND name LIKE '%'||#{searchKeyword}||'%'
+				 </if>
+				 <if test="searchCondition == 'role'">
+				 	AND role LIKE '%'||#{searchKeyword}||'%'
+				 </if>
+		<![CDATA[
+			 	 ORDER BY idx) K
+			WHERE rownum <= ${end_idx}) Q
+		WHERE rnum >= ${start_idx}
+		]]>
+	</select>
+	
+	<select id="totalCount" parameterType="member" resultType="int">
+		SELECT COUNT(*) FROM camp_member
+		WHERE 1 = 1
+		<if test="searchCondition == 'id'">
+			AND id LIKE '%'||#{searchKeyword}||'%'
+		</if>
+		<if test="searchCondition == 'name'">
+			AND name LIKE '%'||#{searchKeyword}||'%'
+		</if>
+		<if test="searchCondition == 'role'">
+			AND role LIKE '%'||#{searchKeyword}||'%'
+		</if>
+	</select>
+
+</mapper>

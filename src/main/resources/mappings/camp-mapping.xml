@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CAMP">
+
+	<insert id="insertCamp" parameterType="camp">
+		INSERT INTO camping(camp_name, camp_div, lat, lng, addr, common_camp, car_camp, glamping, caravan, toilet, shower_room, sink, addtional_1, addtional_2, approval_date)
+		VALUES(#{camp_name}, #{camp_div}, #{lat}, #{lng}, #{addr}, #{common_camp}, #{car_camp}, #{glamping}, #{caravan}, #{toilet}, #{shower_room}, #{sink}, #{addtional_1}, #{addtional_2}, #{approval_date})
+	</insert>
+	
+	<insert id="insertCampSub" parameterType="camp">
+		INSERT INTO campingsub(camp_name)
+		VALUES(#{camp_name})
+	</insert>
+	
+	<delete id="deleteCamp" parameterType="camp">
+		DELETE FROM camping WHERE camp_name = #{camp_name}
+	</delete>
+	
+	<update id="updateCamp" parameterType="camp">
+		UPDATE camping SET camp_div = #{camp_div}, common_camp = #{common_camp}, car_camp = #{car_camp}, glamping = #{glamping}, caravan = #{caravan}, toilet = #{toilet}, shower_room = #{shower_room}, sink = #{sink}, addtional_1 = #{addtional_1}, addtional_2 = #{addtional_2}
+		WHERE camp_name = #{camp_name}
+	</update>
+	
+	<select id="getCamp" parameterType="camp" resultType="camp">
+		SELECT * FROM camping WHERE camp_name = #{camp_name}
+	</select>
+	
+	<select id="getCampList" parameterType="camp" resultType="camp">
+		<![CDATA[
+		SELECT rownum, Q.*
+		FROM
+			(SELECT rownum AS rnum, K.*
+			FROM (SELECT * 
+				 FROM camping
+			 	 WHERE 1 = 1
+		]]>
+				 <if test="searchCondition == 'camp_name'">
+				 	AND camp_name LIKE '%'||#{searchKeyword}||'%'
+				 </if>
+				 <if test="searchCondition == 'addr'">
+				 	AND addr LIKE '%'||#{searchKeyword}||'%'
+				 </if>
+		<![CDATA[
+			 	 ORDER BY addr, camp_name) K
+			WHERE rownum <= ${end_idx}) Q
+		WHERE rnum >= ${start_idx}
+		]]>
+	</select>
+	
+	<select id="totalCount" parameterType="camp" resultType="int">
+		SELECT COUNT(*) FROM camping
+		WHERE 1 = 1
+		<if test="searchCondition == 'camp_name'">
+			AND camp_name LIKE '%'||#{searchKeyword}||'%'
+		</if>
+		<if test="searchCondition == 'addr'">
+			AND addr LIKE '%'||#{searchKeyword}||'%'
+		</if>
+	</select>
+
+</mapper>

@@ -1,0 +1,209 @@
+@charset "UTF-8";
+header {
+	background-color: #ffffff;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+}
+
+nav {
+	background-color: #ffffff;
+	height: 50px;
+	line-height: 50px;
+	font-size:15px;
+	width: 90%;
+	margin: auto;
+}
+
+section {
+	background-color: #61F1CA;
+	min-height: 700px;
+	width: 90%;
+	margin: auto;
+}
+
+footer {
+	background-color: #000000;
+	height: 60px;
+	line-height: 15px;
+	font-size:13px;
+	color: #ffffff;
+	width: 90%;
+	margin: auto;
+}
+
+hr {
+	width: 90%;
+	margin: auto;
+}
+
+a:link, a:visited {
+	color:#000000;
+	text-decoration:none;
+}
+
+a:hover, a:active {
+	color:	#00ff80;
+}
+
+#main_background {
+	background-image: url("../img/background_img.jpg");
+	background-repeat: repeat;
+	background-size: cover;
+}
+
+#login {
+	margin-top: 100px;
+	margin-right: 100px;
+}
+
+.campListTable {
+	border: 1px solid #000000;
+	border-collapse: collapse;
+}
+
+.campListTable tr, .campListTable td {
+	height: 20px;
+	border: 1px solid #000000;
+	padding: 10px;
+}
+
+.campListTable th {
+	height: 40px;
+	border-bottom-style: double;
+}
+
+#searchCondition {
+	width: 90px;
+	height: 32px;
+}
+
+#searchKeyword {
+	width: 500px;
+	height: 32px;
+  	font-size: 15px;
+ 	border: 0;
+  	border-radius: 15px;
+ 	outline: none;
+  	padding-left: 10px;
+  	background-color: rgb(233, 233, 233);
+}
+
+#campFormTable {
+	width: 480px;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+}
+
+#campFormTable th {
+	height: 30px;
+	border-bottom-style: double;
+}
+
+#campFormTable tr, #campFormTable td {
+	height: 30px;
+	padding-left: 5px;
+	border: 1px solid #000000;
+}
+
+#imgFormTable {
+	width: 900px;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+}
+
+#imgFormTable_input {
+	width: 900px;
+}
+
+#imgFormTable th {
+	height: 30px;
+	border-bottom-style: double;
+}
+
+#imgFormTable td {
+	height: 30px;
+}
+
+#imgFormTable tr, #imgFormTable td {
+	padding-left: 5px;
+	border: 1px solid #000000;
+}
+
+#memberFormTable {
+	width: 480px;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+}
+
+#memberFormTable td {
+	height: 50px;
+}
+
+#memberFormTable tr, #memberFormTable td {
+	padding-left: 10px;
+	border: 1px solid #000000;
+}
+
+#memberListTable {
+	width: 1000px;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+}
+
+#memberListTable tr, #memberListTable td {
+	height: 20px;
+	border: 1px solid #000000;
+	padding: 10px;
+}
+
+#memberListTable th {
+	height: 40px;
+	border-bottom-style: double;
+}
+
+#formLogin {
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	border-radius: 10px;
+	width: 250px;
+	height: 200px;
+	line-height: 15px;
+}
+
+#reserveFormTable {
+	background-color: #fadaab;
+	border: 1px solid #000000;
+	border-radius: 10px;
+	width: 450px;
+	height: 300px;
+}
+
+#inputForm {
+	width: 200px;
+	height: 20px;
+  	font-size: 15px;
+ 	border: 0;
+  	border-radius: 15px;
+ 	outline: none;
+  	padding-left: 10px;
+  	background-color: #ffffff;
+}
+
+#reviewFormTable {
+	width: 400px;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+}
+
+#reviewFormTable th {
+	width: 100px;
+	height: 30px;
+	border: 1px solid #000000;
+}
+
+#reviewFormTable tr, #reviewFormTable td {
+	height: 40px;
+	padding-left: 10px;
+	border: 1px solid #000000;
+}
